@@ -1,8 +1,8 @@
 import {ModelCrudRestApiConfig} from '@loopback/rest-crud';
-import {Categories} from '../models';
+import {Category} from '../models';
 
 const config: ModelCrudRestApiConfig = {
-  model: Categories,
+  model: Category,
   pattern: 'CrudRest',
   dataSource: 'DB_rest_crud',
   basePath: '/categories',

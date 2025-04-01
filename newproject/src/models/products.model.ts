@@ -1,29 +1,30 @@
-import {Entity, model, property, belongsTo} from '@loopback/repository';
-import {Categories} from '.';
+import {belongsTo, Entity, model, property} from '@loopback/repository';
+import {Category} from '.';
 
-@model({
-  settings: {
-    idInjection: false,
-    mysql: {schema: 'pizzaselling', table: 'products'},
-    foreignKeys: {
-      productsIbfk_1Rel: {
-        name: 'productsIbfk_1Rel',
-        entity: 'Categories',
-        entityKey: 'categoryId',
-        foreignKey: 'categoryId'
-      }
-    }
-  }
-})
+// @model({
+//   settings: {
+//     idInjection: false,
+//     mysql: {schema: 'pizzaselling', table: 'products'},
+//     foreignKeys: {
+//       products_ibfk_1Rel: {
+//         name: 'products_ibfk_1Rel',
+//         entity: 'Category',
+//         entityKey: 'categoryId',
+//         foreignKey: 'categoryId'
+//       }
+//     }
+//   }
+// })
+@model()
 export class Products extends Entity {
   @property({
     type: 'string',
-    required: false,
+    required: true,
     jsonSchema: {nullable: false},
     length: 36,
     generated: false,
     id: 1,
-    mysql: {columnName: 'product_id', dataType: 'char', dataLength: 36, dataPrecision: null, dataScale: null, nullable: 'N', generated: false},
+    mysql: {columnName: 'productId', dataType: 'char', dataLength: 36, dataPrecision: null, dataScale: null, nullable: 'N', generated: false},
   })
   productId: string;
 
@@ -56,15 +57,15 @@ export class Products extends Entity {
     mysql: {columnName: 'price', dataType: 'decimal', dataLength: null, dataPrecision: 10, dataScale: 2, nullable: 'N', generated: false},
   })
   price: number;
-@belongsTo(() => Categories, {keyFrom: 'categoryId', keyTo: 'category_id'})
-categoryId: string;
 
+  @belongsTo(() => Category)
+  categoryId: string;
 
   @property({
     type: 'date',
     jsonSchema: {nullable: true},
     generated: false,
-    mysql: {columnName: 'created_at', dataType: 'timestamp', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'Y', generated: false},
+    mysql: {columnName: 'createdAt', dataType: 'timestamp', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'Y', generated: false},
   })
   createdAt?: string;
 

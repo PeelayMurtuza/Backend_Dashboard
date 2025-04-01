@@ -3,15 +3,15 @@ import {Entity, model, property} from '@loopback/repository';
 @model({settings: {idInjection: false, mysql: {schema: 'pizzaselling', table: 'user'}}})
 export class User extends Entity {
   @property({
-    type: 'number',
+    type: 'string',
+    required: true,
     jsonSchema: {nullable: false},
-    precision: 10,
-    scale: 0,
-    generated: 1,
+    length: 36,
+    generated: false,
     id: 1,
-    mysql: {columnName: 'id', dataType: 'int', dataLength: null, dataPrecision: 10, dataScale: 0, nullable: 'N', generated: 1},
+    mysql: {columnName: 'id', dataType: 'char', dataLength: 36, dataPrecision: null, dataScale: null, nullable: 'N', generated: false},
   })
-  id?: number;
+  id: string;
 
   @property({
     type: 'string',
